@@ -1,9 +1,11 @@
-on: [push, pull_request]
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
 
 jobs:
   pr-lint:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Pull Request Linter
     steps:
       - name: Checkout
         uses: actions/checkout@v2
