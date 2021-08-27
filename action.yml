@@ -1,10 +1,10 @@
 name: "Hello World"
 description: "Greet someone and record the time"
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
+  title-regex:
+    description: 'Title regex to match'
     required: true
-    default: "World"
+    default: '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\([\w-\.]+\))?(!)?:\ ([\w\ ])+([\s\S]*)\[MT-\d*\]'
 outputs:
   time: # id of output
     description: "The time we greeted you"

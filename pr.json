@@ -1,0 +1,11 @@
+{
+  "pull_request": {
+    "title": "chore: amazing pr [MT-1234]",
+    "head": {
+      "ref": "sample-head-ref"
+    },
+    "base": {
+      "ref": "sample-base-ref"
+    }
+  }
+}

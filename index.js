@@ -2,14 +2,18 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  const titleRegex = core.getInput('title-regex', { required: true });
+  const titleRegexFlags = core.getInput('title-regex-flags') || 'g';
+  const errorMessage = core.getInput('error-message') || `Please fix your PR title to match "${titleRegex}" with "${titleRegexFlags}"`;
+  const title = github.context.payload.pull_request.title;
+
+  core.info(`Checking "${titleRegex}" with "${titleRegexFlags}" flags against the PR title: "${title}"`);
+
+  const regex = new RegExp(titleRegex, titleRegexFlags)
+
+  if (!regex.test(title)) {
+    core.setFailed(errorMessage);
+  }
 } catch (error) {
   core.setFailed(error.message);
 }
