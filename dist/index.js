@@ -6322,6 +6322,7 @@ try {
   const errorMessage = core.getInput('error-message') || `Please fix your PR title to match "${titleRegex}" with "${titleRegexFlags}"`;
   const title = github.context.payload.pull_request.title;
 
+  core.info(`Branch name: ${github.context.payload.pull_request.head.ref}`);
   core.info(`Checking "${titleRegex}" with "${titleRegexFlags}" flags against the PR title: "${title}"`);
 
   const regex = new RegExp(titleRegex, titleRegexFlags)
