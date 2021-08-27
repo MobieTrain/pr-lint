@@ -6317,19 +6317,36 @@ const core = __nccwpck_require__(186);
 const github = __nccwpck_require__(438);
 
 try {
-  const titleRegex = core.getInput('title-regex', { required: true });
-  const titleRegexFlags = core.getInput('title-regex-flags') || 'g';
-  const errorMessage = core.getInput('error-message') || `Please fix your PR title to match "${titleRegex}" with "${titleRegexFlags}"`;
-  const title = github.context.payload.pull_request.title;
+  const titleRegexString = core.getInput('title-regex', { required: true });
+  const titleRegexFlagsString = core.getInput('title-regex-flags') || 'g';
+  const branchRegexString = core.getInput('branch-regex', { required: true });
+  const branchRegexFlagsString = core.getInput('branch-regex-flags') || 'g';
 
-  core.info(`Branch name: ${github.context.payload.pull_request.head.ref}`);
-  core.info(`Checking "${titleRegex}" with "${titleRegexFlags}" flags against the PR title: "${title}"`);
+  const title = String(github.context.payload.pull_request.title);
+  const branch = String(github.context.payload.pull_request.head.ref);
+  const titleRegex = new RegExp(titleRegexString, titleRegexFlagsString)
+  const branchRegex = new RegExp(branchRegexString, branchRegexFlagsString)
 
-  const regex = new RegExp(titleRegex, titleRegexFlags)
+  core.info(`Title: ${title}`);
+  core.info(`Title Regex: ${titleRegex}`);
 
-  if (!regex.test(title)) {
-    core.setFailed(errorMessage);
+  core.info(`Branch: ${branch}`);
+  core.info(`Branch Regex: ${branchRegex}`);
+
+
+  if (!branchRegex.test(branch)) {
+    core.setFailed('Branch doesn\'t match given regex.');
   }
+
+  if (!titleRegex.test(title)) {
+    core.setFailed('Title doesn\'t match given regex.');
+  }
+
+  if (!title.includes(branch)) {
+    core.setFailed('Title and branch are inconsistent');
+  }
+
+
 } catch (error) {
   core.setFailed(error.message);
 }
