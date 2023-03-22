@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/MobieTrain/pr-lint/compare/v1.3.0...v1.3.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* adds INT prefix to branch ([8addb3c](https://github.com/MobieTrain/pr-lint/commit/8addb3cb130339c91e0e8f893c71d5ba7e4b7da6))
+
 ## [1.3.0](https://github.com/MobieTrain/pr-lint/compare/v1.2.0...v1.3.0) (2023-03-22)
 
 
