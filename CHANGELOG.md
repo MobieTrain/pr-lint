@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/MobieTrain/pr-lint/compare/v1.2.0...v1.3.0) (2023-03-22)
+
+
+### Features
+
+* add INT as one of the allowed ticket prefixes ([a2661af](https://github.com/MobieTrain/pr-lint/commit/a2661af02a9166ec164332c7bda8f11d8a4fecf2))
+
 ## [1.2.0](https://github.com/MobieTrain/pr-lint/compare/v1.1.0...v1.2.0) (2023-02-24)
 
 
