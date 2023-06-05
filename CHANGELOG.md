@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/MobieTrain/pr-lint/compare/v1.3.1...v1.4.0) (2023-06-05)
+
+
+### Features
+
+* add CT to title and branch patterns [CT-14] ([#10](https://github.com/MobieTrain/pr-lint/issues/10)) ([c39cec0](https://github.com/MobieTrain/pr-lint/commit/c39cec03f86e91e3a80dce57219361df719bdbf2))
+
 ## [1.3.1](https://github.com/MobieTrain/pr-lint/compare/v1.3.0...v1.3.1) (2023-03-22)
 
 
