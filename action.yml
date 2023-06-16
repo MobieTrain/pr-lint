@@ -4,11 +4,11 @@ inputs:
   title-regex:
     description: "Title regex to match"
     required: true
-    default: '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|deps){1}(\([\w-\.]+\))?(!)?:\ ([\w\ ])+([\s\S]*)\[(MT|MI|INT|CT)-\d+\]'
+    default: '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|deps){1}(\([\w-\.]+\))?(!)?:\ ([\w\ ])+([\s\S]*)\[(MT|MI|INT|CT|HF)-\d+\]'
   branch-regex:
     description: "Title regex to match"
     required: true
-    default: '(MT|MI|INT|CT)-\d+'
+    default: '(MT|MI|INT|CT|HF)-\d+'
 outputs:
   time: # id of output
     description: "The time we greeted you"
