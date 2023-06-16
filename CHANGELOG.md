@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/MobieTrain/pr-lint/compare/v1.4.0...v1.5.0) (2023-06-16)
+
+
+### Features
+
+* update branch and title regex ([#12](https://github.com/MobieTrain/pr-lint/issues/12)) ([f8ef862](https://github.com/MobieTrain/pr-lint/commit/f8ef862c788d1b5c1b7c353884caef4a2c9fbc2d))
+
 ## [1.4.0](https://github.com/MobieTrain/pr-lint/compare/v1.3.1...v1.4.0) (2023-06-05)
 
 
