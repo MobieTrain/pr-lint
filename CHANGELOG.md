@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/MobieTrain/pr-lint/compare/v1.5.0...v1.6.0) (2023-08-29)
+
+
+### Features
+
+* add DB to the list of allowed suffixes ([5fab29f](https://github.com/MobieTrain/pr-lint/commit/5fab29f42acca3cb247356748a42d98d433b98c8))
+
 ## [1.5.0](https://github.com/MobieTrain/pr-lint/compare/v1.4.0...v1.5.0) (2023-06-16)
 
 
