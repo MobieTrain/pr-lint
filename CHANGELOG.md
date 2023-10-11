@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/MobieTrain/pr-lint/compare/v1.6.0...v1.7.0) (2023-10-11)
+
+
+### Features
+
+* add RI to title and branch patterns ([#15](https://github.com/MobieTrain/pr-lint/issues/15)) ([6e939b6](https://github.com/MobieTrain/pr-lint/commit/6e939b66fdf64b50c107bb8a4339a1723b83f9b1))
+
 ## [1.6.0](https://github.com/MobieTrain/pr-lint/compare/v1.5.0...v1.6.0) (2023-08-29)
 
 
