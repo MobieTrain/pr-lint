@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/MobieTrain/pr-lint/compare/v1.7.0...v1.8.0) (2023-12-29)
+
+
+### Features
+
+* add MN to patterns ([#17](https://github.com/MobieTrain/pr-lint/issues/17)) ([c77cb65](https://github.com/MobieTrain/pr-lint/commit/c77cb65fddafe491b9e46f778eb79ba7937afe7d))
+
 ## [1.7.0](https://github.com/MobieTrain/pr-lint/compare/v1.6.0...v1.7.0) (2023-10-11)
 
 
