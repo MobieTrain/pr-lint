@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/MobieTrain/pr-lint/compare/v1.8.0...v1.9.0) (2024-01-08)
+
+
+### Features
+
+* update pattern ([#19](https://github.com/MobieTrain/pr-lint/issues/19)) ([d888b24](https://github.com/MobieTrain/pr-lint/commit/d888b24da8b2061f441fe74d8f827973e05c616f))
+
 ## [1.8.0](https://github.com/MobieTrain/pr-lint/compare/v1.7.0...v1.8.0) (2023-12-29)
 
 
