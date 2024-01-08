@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/MobieTrain/pr-lint/compare/v1.9.0...v1.10.0) (2024-01-08)
+
+
+### Features
+
+* add PD to allowed patterns ([40bf83b](https://github.com/MobieTrain/pr-lint/commit/40bf83b241c1601a81284c67cb50025c63699fd0))
+
 ## [1.9.0](https://github.com/MobieTrain/pr-lint/compare/v1.8.0...v1.9.0) (2024-01-08)
 
 
