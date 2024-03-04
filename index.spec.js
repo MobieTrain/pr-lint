@@ -15,26 +15,42 @@ describe("validateTitleAndBranch", () => {
   const titleRegex = new RegExp(titleRegexString);
   const branchRegex = new RegExp(branchRegexString);
 
-  it("should return error when the title does not match the regex pattern", () => {
-    const result = validateTitleAndBranch({
-      branch: "PD-200",
-      branchRegex,
-      title: "Invalid title",
-      titleRegex,
-    });
+  describe("invalid title", () => {
+    [
+      "invalid title",
+      "feat(): description [PD-200]",
+      "feat(test): description [PD-200-0001]",
+      "feat(test): description",
+      "feat(test): description PD-200",
+    ].forEach((title) => {
+      it(`should return error when the title does not match the regex pattern: ${title}`, () => {
+        const result = validateTitleAndBranch({
+          branch: "PD-200",
+          branchRegex,
+          title,
+          titleRegex,
+        });
 
-    assert.strictEqual(result, "Title doesn't match given regex.");
+        assert.strictEqual(result, "Title doesn't match given regex.");
+      });
+    });
   });
 
-  it("should return error when the branch does not match the regex pattern", () => {
-    const result = validateTitleAndBranch({
-      branch: "invalid-branch",
-      branchRegex,
-      title: "feat(test): description [PD-200]",
-      titleRegex,
-    });
+  describe("invalid branch", () => {
+    ["invalid-branch", "PD-200-", "PD-200PD", "PD200", "200"].forEach(
+      (branch) => {
+        it(`should return error when the branch does not match the regex pattern: ${branch}`, () => {
+          const result = validateTitleAndBranch({
+            branch,
+            branchRegex,
+            title: "feat(test): description [PD-200]",
+            titleRegex,
+          });
 
-    assert.strictEqual(result, "Branch doesn't match given regex.");
+          assert.strictEqual(result, "Branch doesn't match given regex.");
+        });
+      }
+    );
   });
 
   describe("branch / title inconsistencies", () => {
@@ -54,16 +70,16 @@ describe("validateTitleAndBranch", () => {
         assert.strictEqual(result, "Title and branch are inconsistent");
       });
     });
+  });
 
-    it("should not return error when the title and branch are consistent", () => {
-      const result = validateTitleAndBranch({
-        branch: "PD-200",
-        branchRegex,
-        title: "feat(test): description xpto 123 [PD-200]",
-        titleRegex,
-      });
-
-      assert.strictEqual(result, undefined);
+  it("should not return error when the title and branch are consistent", () => {
+    const result = validateTitleAndBranch({
+      branch: "PD-200-001",
+      branchRegex,
+      title: "feat(test): description xpto 123 [PD-200]",
+      titleRegex,
     });
+
+    assert.strictEqual(result, undefined);
   });
 });
