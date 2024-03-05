@@ -6,4 +6,4 @@ Lints PRs to comply with our convention.
 
 Requires node version >= 21
 
-`npm run tes`
+`npm run test`
