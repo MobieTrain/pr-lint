@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/MobieTrain/pr-lint/compare/v1.10.0...v1.11.0) (2024-03-05)
+
+
+### Features
+
+* validate that the `ticket id` in the PR title is part of the branch name [PD-202] ([#22](https://github.com/MobieTrain/pr-lint/issues/22)) ([71a3fa4](https://github.com/MobieTrain/pr-lint/commit/71a3fa4827aba1373593da806c72e85962579b99))
+
 ## [1.10.0](https://github.com/MobieTrain/pr-lint/compare/v1.9.0...v1.10.0) (2024-01-08)
 
 
