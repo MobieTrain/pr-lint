@@ -1,6 +1,42 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 509:
+/***/ ((module) => {
+
+function validateTitleAndBranch({ branch, branchRegex, title, titleRegex }) {
+  try {
+    if (branchRegex.test(branch) === false) {
+      return "Branch doesn't match given regex.";
+    }
+
+    if (titleRegex.test(title) === false) {
+      return "Title doesn't match given regex.";
+    }
+
+    // Extract the issue number from the title using regex
+    const issueNumberMatches = title.match(/\[(\w+-\d+)\]/);
+    const issueNumber = issueNumberMatches ? issueNumberMatches[1] : null;
+
+    // Check if the branch is a substring of the title and it matches the issue number format
+    if (
+      !issueNumber ||
+      (branch !== issueNumber && !branch.startsWith(issueNumber + "-"))
+    ) {
+      return "Title and branch are inconsistent";
+    }
+  } catch (error) {
+    return error.message;
+  }
+}
+
+module.exports = {
+  validateTitleAndBranch,
+};
+
+
+/***/ }),
+
 /***/ 351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -6316,40 +6352,36 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(186);
 const github = __nccwpck_require__(438);
 
-try {
-  const titleRegexString = core.getInput('title-regex', { required: true });
-  const titleRegexFlagsString = core.getInput('title-regex-flags') || 'g';
-  const branchRegexString = core.getInput('branch-regex', { required: true });
-  const branchRegexFlagsString = core.getInput('branch-regex-flags') || 'g';
+const { validateTitleAndBranch } = __nccwpck_require__(509);
+
+function main() {
+  const titleRegexString = core.getInput("title-regex", { required: true });
+  const branchRegexString = core.getInput("branch-regex", { required: true });
 
   const title = String(github.context.payload.pull_request.title);
   const branch = String(github.context.payload.pull_request.head.ref);
-  const titleRegex = new RegExp(titleRegexString, titleRegexFlagsString)
-  const branchRegex = new RegExp(branchRegexString, branchRegexFlagsString)
+  const titleRegex = new RegExp(titleRegexString);
+  const branchRegex = new RegExp(branchRegexString);
 
   core.info(`Title: ${title}`);
   core.info(`Title Regex: ${titleRegex}`);
-
   core.info(`Branch: ${branch}`);
   core.info(`Branch Regex: ${branchRegex}`);
 
+  const error = validateTitleAndBranch({
+    branch,
+    branchRegex,
+    title,
+    titleRegex,
+  });
 
-  if (!branchRegex.test(branch)) {
-    core.setFailed('Branch doesn\'t match given regex.');
+  if (error) {
+    core.setFailed(error);
   }
-
-  if (!titleRegex.test(title)) {
-    core.setFailed('Title doesn\'t match given regex.');
-  }
-
-  if (!title.includes(branch)) {
-    core.setFailed('Title and branch are inconsistent');
-  }
-
-
-} catch (error) {
-  core.setFailed(error.message);
 }
+
+main();
+
 })();
 
 module.exports = __webpack_exports__;
