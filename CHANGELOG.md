@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.1](https://github.com/MobieTrain/pr-lint/compare/v1.11.0...v1.11.1) (2026-04-13)
+
+
+### Bug Fixes
+
+* update regex patterns to include MOB in title and branch validation ([#24](https://github.com/MobieTrain/pr-lint/issues/24)) ([c2d8b36](https://github.com/MobieTrain/pr-lint/commit/c2d8b360cd31bd77416f9d13169e86497b5057a0))
+
 ## [1.11.0](https://github.com/MobieTrain/pr-lint/compare/v1.10.0...v1.11.0) (2024-03-05)
 
 
