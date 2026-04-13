@@ -6,9 +6,9 @@ const { validateTitleAndBranch } = require("./methods");
 
 describe("validateTitleAndBranch", () => {
   process.env["INPUT_TITLE-REGEX"] =
-    "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|deps){1}(\\([\\w\\.-]+\\))?(!)?:\\ ([\\w\\ ])+([\\s\\S]*)\\[(MT|MI|INT|CT|HF|DB|RI|MN|MP|PD)-\\d+\\]";
+    "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|deps){1}(\\([\\w\\.-]+\\))?(!)?:\\ ([\\w\\ ])+([\\s\\S]*)\\[(MT|MI|INT|CT|HF|DB|RI|MN|MP|MOB|PD)-\\d+\\]";
   process.env["INPUT_BRANCH-REGEX"] =
-    "^(?:MT|MI|INT|CT|HF|DB|RI|MN|MP|PD)-\\d+(?:-\\d+)?$";
+    "^(?:MT|MI|INT|CT|HF|DB|RI|MN|MP|MOB|PD)-\\d+(?:-\\d+)?$";
 
   const titleRegexString = core.getInput("title-regex", { required: true });
   const branchRegexString = core.getInput("branch-regex", { required: true });
