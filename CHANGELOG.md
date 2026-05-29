@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://github.com/MobieTrain/pr-lint/compare/v1.11.1...v1.12.0) (2026-05-29)
+
+
+### Features
+
+* update regex patterns to include NU ([#26](https://github.com/MobieTrain/pr-lint/issues/26)) ([38d2924](https://github.com/MobieTrain/pr-lint/commit/38d2924232cc719178f0d587ea1dfda539690de8))
+
 ## [1.11.1](https://github.com/MobieTrain/pr-lint/compare/v1.11.0...v1.11.1) (2026-04-13)
 
 
