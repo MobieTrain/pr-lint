@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/MobieTrain/pr-lint/compare/v1.12.0...v1.13.0) (2026-10-01)
+
+
+### Features
+
+* accept github issue references [GH-28] ([#29](https://github.com/MobieTrain/pr-lint/issues/29)) ([920c783](https://github.com/MobieTrain/pr-lint/commit/920c783022a162ff9a13a1d0fcaa412c580c2863))
+
 ## [1.12.0](https://github.com/MobieTrain/pr-lint/compare/v1.11.1...v1.12.0) (2026-05-29)
 
 
