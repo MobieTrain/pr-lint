@@ -80,6 +80,8 @@ describe("validateTitleAndBranch", () => {
       ["GH-123", "feat: description [GH-123]"],
       ["GH-123-store-events", "feat: description (#123)"],
       ["123-store-events", "feat: description [GH-123]"],
+      ["123-fix", "feat: fix [PD-999] behavior (#123)"],
+      ["123-fix", "feat: mention (#999) earlier (#123)"],
     ].forEach(([branch, title]) => {
       it(`should accept a GitHub issue reference: ${branch} / ${title}`, () => {
         const result = validateTitleAndBranch({

@@ -4,8 +4,8 @@
 /***/ 509:
 /***/ ((module) => {
 
-const JIRA_KEY_PATTERN = /\[(\w+-\d+)\]/;
-const GITHUB_ISSUE_PATTERN = /\(#(\d+)\)/;
+const JIRA_KEY_PATTERN = /\[(\w+-\d+)\]\s*$/;
+const GITHUB_ISSUE_PATTERN = /\(#(\d+)\)\s*$/;
 const GITHUB_BRANCH_PATTERN = /^(?:GH-)?(\d+)(?:-|$)/;
 
 function extractTitleReference(title) {
