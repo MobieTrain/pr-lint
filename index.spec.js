@@ -6,9 +6,9 @@ const { validateTitleAndBranch } = require("./methods");
 
 describe("validateTitleAndBranch", () => {
   process.env["INPUT_TITLE-REGEX"] =
-    "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|deps){1}(\\([\\w\\.-]+\\))?(!)?:\\ ([\\w\\ ])+([\\s\\S]*)\\[(MT|MI|INT|CT|HF|DB|RI|MN|MP|MOB|PD|NU)-\\d+\\]";
+    "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|deps){1}(\\([\\w\\.-]+\\))?(!)?:\\ ([\\w\\ ])+([\\s\\S]*)(\\[(MT|MI|INT|CT|HF|DB|RI|MN|MP|MOB|PD|NU|GH)-\\d+\\]|\\(#\\d+\\))$";
   process.env["INPUT_BRANCH-REGEX"] =
-    "^(?:MT|MI|INT|CT|HF|DB|RI|MN|MP|MOB|PD|NU)-\\d+(?:-\\d+)?$";
+    "^(?:MT|MI|INT|CT|HF|DB|RI|MN|MP|MOB|PD|NU)-\\d+(?:-\\d+)?$|^(?:GH-)?\\d+(?:-[\\w.-]+)?$";
 
   const titleRegexString = core.getInput("title-regex", { required: true });
   const branchRegexString = core.getInput("branch-regex", { required: true });
@@ -37,7 +37,7 @@ describe("validateTitleAndBranch", () => {
   });
 
   describe("invalid branch", () => {
-    ["invalid-branch", "PD-200-", "PD-200PD", "PD200", "200"].forEach(
+    ["invalid-branch", "PD-200-", "PD-200PD", "PD200"].forEach(
       (branch) => {
         it(`should return error when the branch does not match the regex pattern: ${branch}`, () => {
           const result = validateTitleAndBranch({
@@ -57,9 +57,51 @@ describe("validateTitleAndBranch", () => {
     [
       ["PD-200", "feat(test): description [PD-201]"],
       ["PD-200-200", "feat(test): description [PD-201]"],
-      ["PD-200-200", "feat(test): description [PD-201]"],
+      ["200", "feat(test): description [PD-200]"],
     ].forEach(([branch, title]) => {
       it(`should return error when the title and branch are inconsistent`, () => {
+        const result = validateTitleAndBranch({
+          branch,
+          branchRegex,
+          title,
+          titleRegex,
+        });
+
+        assert.strictEqual(result, "Title and branch are inconsistent");
+      });
+    });
+  });
+
+  describe("GitHub issue references", () => {
+    [
+      ["123-store-events", "feat: description (#123)"],
+      ["123", "fix: description (#123)"],
+      ["GH-123-store-events", "feat: description [GH-123]"],
+      ["GH-123", "feat: description [GH-123]"],
+      ["GH-123-store-events", "feat: description (#123)"],
+      ["123-store-events", "feat: description [GH-123]"],
+      ["123-fix", "feat: fix [PD-999] behavior (#123)"],
+      ["123-fix", "feat: mention (#999) earlier (#123)"],
+    ].forEach(([branch, title]) => {
+      it(`should accept a GitHub issue reference: ${branch} / ${title}`, () => {
+        const result = validateTitleAndBranch({
+          branch,
+          branchRegex,
+          title,
+          titleRegex,
+        });
+
+        assert.strictEqual(result, undefined);
+      });
+    });
+
+    [
+      ["124-store-events", "feat: description (#123)"],
+      ["GH-124-store-events", "feat: description [GH-123]"],
+      ["1234-store-events", "feat: description (#123)"],
+      ["PD-123", "feat: description (#123)"],
+    ].forEach(([branch, title]) => {
+      it(`should reject an inconsistent GitHub issue reference: ${branch} / ${title}`, () => {
         const result = validateTitleAndBranch({
           branch,
           branchRegex,
