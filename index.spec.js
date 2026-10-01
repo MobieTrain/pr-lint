@@ -37,7 +37,7 @@ describe("validateTitleAndBranch", () => {
   });
 
   describe("invalid branch", () => {
-    ["invalid-branch", "PD-200-", "PD-200PD", "PD200", "200"].forEach(
+    ["invalid-branch", "PD-200-", "PD-200PD", "PD200"].forEach(
       (branch) => {
         it(`should return error when the branch does not match the regex pattern: ${branch}`, () => {
           const result = validateTitleAndBranch({
@@ -57,7 +57,7 @@ describe("validateTitleAndBranch", () => {
     [
       ["PD-200", "feat(test): description [PD-201]"],
       ["PD-200-200", "feat(test): description [PD-201]"],
-      ["PD-200-200", "feat(test): description [PD-201]"],
+      ["200", "feat(test): description [PD-200]"],
     ].forEach(([branch, title]) => {
       it(`should return error when the title and branch are inconsistent`, () => {
         const result = validateTitleAndBranch({
